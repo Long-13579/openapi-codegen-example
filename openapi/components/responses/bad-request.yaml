@@ -1,0 +1,12 @@
+BadRequestResponse:
+  description: Bad request
+  content:
+    application/json:
+      schema:
+        $ref: ../schemas/common/error-response.yaml#/ErrorResponse
+      example:
+        code: "VALIDATION_ERROR"
+        message: "Invalid request data"
+        details:
+          field: "title"
+          reason: "Title is required"

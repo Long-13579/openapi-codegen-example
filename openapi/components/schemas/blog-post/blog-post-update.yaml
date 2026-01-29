@@ -1,0 +1,29 @@
+BlogPostUpdate:
+  type: object
+  properties:
+    title:
+      type: string
+      description: Updated blog post title
+      example: "Advanced TypeScript Patterns"
+    content:
+      type: string
+      description: Updated full content of the blog post
+      example: "# Advanced Patterns\n\nIn this comprehensive guide, we'll explore..."
+    excerpt:
+      type: string
+      description: Updated short excerpt for previews
+      example: "Deep dive into advanced TypeScript patterns and best practices."
+    slug:
+      type: string
+      description: Updated URL-friendly slug
+      example: "advanced-typescript-patterns"
+    status:
+      type: string
+      enum: [draft, published, archived]
+      description: Updated publication status
+    tags:
+      type: array
+      items:
+        type: string
+      description: Updated tags for the blog post
+      example: ["typescript", "advanced", "patterns", "best-practices"]

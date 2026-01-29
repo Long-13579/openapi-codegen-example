@@ -1,0 +1,9 @@
+UnauthorizedResponse:
+  description: Unauthorized access
+  content:
+    application/json:
+      schema:
+        $ref: ../schemas/common/error-response.yaml#/ErrorResponse
+      example:
+        code: "UNAUTHORIZED"
+        message: "Authentication required to access this resource"

@@ -1,0 +1,60 @@
+User:
+  type: object
+  required:
+    - id
+    - email
+    - username
+    - createdAt
+  properties:
+    id:
+      type: string
+      format: uuid
+      description: Unique identifier for the user
+    email:
+      type: string
+      format: email
+      description: User's email address
+      example: "admin@yourblog.com"
+    username:
+      type: string
+      description: Unique username for the user
+      example: "blogadmin"
+    firstName:
+      type: string
+      description: User's first name
+      example: "John"
+    lastName:
+      type: string
+      description: User's last name
+      example: "Doe"
+    bio:
+      type: string
+      description: User biography
+      example: "Tech enthusiast and blog author"
+    avatar:
+      type: string
+      format: uri
+      description: URL to user's avatar image
+      example: "https://example.com/avatars/john-doe.jpg"
+    role:
+      type: string
+      enum: [admin, author, reader]
+      description: User role
+      example: "admin"
+    isActive:
+      type: boolean
+      description: Whether the user account is active
+      example: true
+    createdAt:
+      type: string
+      format: date-time
+      description: Date and time when the user was created
+    updatedAt:
+      type: string
+      format: date-time
+      description: Date and time when the user was last updated
+    lastLoginAt:
+      type: string
+      format: date-time
+      description: Date and time of the last login
+      nullable: true

@@ -1,0 +1,94 @@
+get:
+  tags:
+    - Blog Posts
+  summary: Get blog post by ID
+  description: Retrieves a specific blog post by its unique identifier.
+  operationId: getBlogPostById
+  security: []
+  parameters:
+    - $ref: ../components/parameters/blog-post-id.yaml#/BlogPostIdParam
+  responses:
+    '200':
+      description: Blog post details
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/blog-post/blog-post.yaml#/BlogPost
+          example:
+            id: "123e4567-e89b-12d3-a456-426614174000"
+            title: "Getting Started with TypeScript"
+            slug: "getting-started-typescript"
+            content: "# Introduction\n\nTypeScript is a typed superset of JavaScript..."
+            excerpt: "Learn the basics of TypeScript and how it improves JavaScript development."
+            status: "published"
+            tags: ["typescript", "javascript", "tutorial"]
+            readingTime: 8
+            viewCount: 1250
+            createdAt: "2024-01-15T10:00:00Z"
+            updatedAt: "2024-01-16T14:30:00Z"
+            publishedAt: "2024-01-15T10:00:00Z"
+    '404':
+      $ref: ../components/responses/not-found.yaml#/NotFoundResponse
+
+put:
+  tags:
+    - Blog Posts
+  summary: Update blog post
+  description: Updates a blog post completely. Requires authentication and admin/author role.
+  operationId: updateBlogPost
+  security:
+    - jwt-bearer: []
+  parameters:
+    - $ref: ../components/parameters/blog-post-id.yaml#/BlogPostIdParam
+  requestBody:
+    $ref: ../components/request-bodies/update-blog-post.yaml#/UpdateBlogPostRequest
+  responses:
+    '200':
+      description: Blog post updated successfully
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/blog-post/blog-post.yaml#/BlogPost
+          example:
+            id: "123e4567-e89b-12d3-a456-426614174000"
+            title: "Advanced TypeScript Patterns"
+            slug: "advanced-typescript-patterns"
+            content: "# Advanced Patterns\n\nIn this comprehensive guide, we'll explore..."
+            excerpt: "Deep dive into advanced TypeScript patterns and best practices."
+            status: "published"
+            tags: ["typescript", "advanced", "patterns", "best-practices"]
+            readingTime: 12
+            viewCount: 1250
+            createdAt: "2024-01-15T10:00:00Z"
+            updatedAt: "2024-01-16T16:00:00Z"
+            publishedAt: "2024-01-15T10:00:00Z"
+    '400':
+      $ref: ../components/responses/bad-request.yaml#/BadRequestResponse
+    '401':
+      $ref: ../components/responses/unauthorized.yaml#/UnauthorizedResponse
+    '403':
+      $ref: ../components/responses/forbidden.yaml#/ForbiddenResponse
+    '404':
+      $ref: ../components/responses/not-found.yaml#/NotFoundResponse
+    '409':
+      $ref: ../components/responses/conflict.yaml#/ConflictResponse
+
+delete:
+  tags:
+    - Blog Posts
+  summary: Delete blog post
+  description: Deletes a blog post permanently. Requires authentication and admin role.
+  operationId: deleteBlogPost
+  security:
+    - jwt-bearer: []
+  parameters:
+    - $ref: ../components/parameters/blog-post-id.yaml#/BlogPostIdParam
+  responses:
+    '204':
+      description: Blog post deleted successfully
+    '401':
+      $ref: ../components/responses/unauthorized.yaml#/UnauthorizedResponse
+    '403':
+      $ref: ../components/responses/forbidden.yaml#/ForbiddenResponse
+    '404':
+      $ref: ../components/responses/not-found.yaml#/NotFoundResponse

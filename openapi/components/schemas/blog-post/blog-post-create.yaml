@@ -1,0 +1,33 @@
+BlogPostCreate:
+  type: object
+  required:
+    - title
+    - content
+  properties:
+    title:
+      type: string
+      description: Blog post title
+      example: "Getting Started with TypeScript"
+    content:
+      type: string
+      description: Full content of the blog post (supports Markdown)
+      example: "# Introduction\n\nTypeScript is a typed superset of JavaScript..."
+    excerpt:
+      type: string
+      description: Short excerpt of the blog post for previews
+      example: "Learn the basics of TypeScript and how it improves JavaScript development."
+    slug:
+      type: string
+      description: URL-friendly slug for the blog post (auto-generated if not provided)
+      example: "getting-started-typescript"
+    status:
+      type: string
+      enum: [draft, published]
+      default: "draft"
+      description: Publication status of the blog post
+    tags:
+      type: array
+      items:
+        type: string
+      description: Tags associated with the blog post
+      example: ["typescript", "javascript", "tutorial"]

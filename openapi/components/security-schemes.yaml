@@ -1,0 +1,5 @@
+jwt-bearer:
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: JWT Bearer token for authentication. Include token in Authorization header

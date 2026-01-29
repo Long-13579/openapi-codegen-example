@@ -1,0 +1,9 @@
+ForbiddenResponse:
+  description: Access forbidden
+  content:
+    application/json:
+      schema:
+        $ref: ../schemas/common/error-response.yaml#/ErrorResponse
+      example:
+        code: "FORBIDDEN"
+        message: "You do not have permission to perform this action"

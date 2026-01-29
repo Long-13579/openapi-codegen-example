@@ -1,0 +1,26 @@
+openapi: 3.0.3
+info:
+  title: Blog API
+  version: 1.0.0
+  description: API for managing blog posts and user authentication
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+  - url: https://api.yourblog.com/v1
+    description: Production server
+  - url: http://dev-api.yourblog.com/v1
+    description: Development server
+
+paths:
+  /blog-posts:
+    $ref: ./paths/blog-posts.yaml
+  /blog-posts/{id}:
+    $ref: ./paths/blog-posts-id.yaml
+  /auth/login:
+    $ref: ./paths/auth.yaml
+
+components:
+  securitySchemes:
+    jwt-bearer:
+      $ref: ./components/security-schemes.yaml#/jwt-bearer

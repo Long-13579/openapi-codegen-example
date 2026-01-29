@@ -1,0 +1,62 @@
+BlogPost:
+  type: object
+  required:
+    - id
+    - title
+    - content
+    - createdAt
+    - updatedAt
+    - status
+  properties:
+    id:
+      type: string
+      format: uuid
+      description: Unique identifier for the blog post
+    title:
+      type: string
+      description: Blog post title
+      example: "Top 10 JavaScript Frameworks in 2024"
+    content:
+      type: string
+      description: Full content of the blog post (supports Markdown)
+      example: "# Introduction\n\nIn this article, we'll explore the most popular JavaScript frameworks..."
+    excerpt:
+      type: string
+      description: Short excerpt of the blog post for previews
+      example: "Explore the top JavaScript frameworks dominating the web development landscape in 2024."
+    slug:
+      type: string
+      description: URL-friendly slug for the blog post
+      example: "top-10-javascript-frameworks-2024"
+    status:
+      type: string
+      enum: [draft, published, archived]
+      description: Publication status of the blog post
+      example: "published"
+    tags:
+      type: array
+      items:
+        type: string
+      description: Tags associated with the blog post
+      example: ["javascript", "frameworks", "web-development"]
+    readingTime:
+      type: integer
+      description: Estimated reading time in minutes
+      example: 8
+    viewCount:
+      type: integer
+      description: Number of times the post has been viewed
+      example: 1250
+    createdAt:
+      type: string
+      format: date-time
+      description: Date and time when the post was created
+    updatedAt:
+      type: string
+      format: date-time
+      description: Date and time when the post was last updated
+    publishedAt:
+      type: string
+      format: date-time
+      description: Date and time when the post was published
+      nullable: true

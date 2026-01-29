@@ -1,0 +1,9 @@
+ConflictResponse:
+  description: Resource conflict
+  content:
+    application/json:
+      schema:
+        $ref: ../schemas/common/error-response.yaml#/ErrorResponse
+      example:
+        code: "DUPLICATE_SLUG"
+        message: "A blog post with slug 'getting-started-typescript' already exists"

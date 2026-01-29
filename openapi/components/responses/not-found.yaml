@@ -1,0 +1,9 @@
+NotFoundResponse:
+  description: Resource not found
+  content:
+    application/json:
+      schema:
+        $ref: ../schemas/common/error-response.yaml#/ErrorResponse
+      example:
+        code: "NOT_FOUND"
+        message: "Blog post with ID '123e4567-e89b-12d3-a456-426614174000' not found"

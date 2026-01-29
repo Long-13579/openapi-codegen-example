@@ -1,0 +1,26 @@
+ErrorResponse:
+  type: object
+  required:
+    - code
+    - message
+  properties:
+    code:
+      type: string
+      description: Error code in UPPER_SNAKE_CASE
+      example: "VALIDATION_ERROR"
+    message:
+      type: string
+      description: Human-readable error message
+      example: "Invalid request data"
+    details:
+      type: object
+      description: Additional error details (optional)
+      properties:
+        field:
+          type: string
+          description: Field that caused the error
+          example: "email"
+        reason:
+          type: string
+          description: Specific reason for the error
+          example: "Invalid email format"

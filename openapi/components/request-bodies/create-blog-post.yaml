@@ -1,0 +1,6 @@
+CreateBlogPostRequest:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: ../schemas/blog-post/blog-post-create.yaml#/BlogPostCreate

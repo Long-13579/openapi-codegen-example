@@ -1,0 +1,6 @@
+UpdateBlogPostRequest:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: ../schemas/blog-post/blog-post-update.yaml#/BlogPostUpdate

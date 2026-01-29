@@ -1,0 +1,91 @@
+get:
+  tags:
+    - Blog Posts
+  summary: List blog posts
+  description: Retrieves a paginated list of blog posts. Supports filtering by status for authenticated users.
+  operationId: listBlogPosts
+  security: []
+  parameters:
+    - $ref: ../components/parameters/page.yaml#/PageParam
+    - $ref: ../components/parameters/limit.yaml#/LimitParam
+    - $ref: ../components/parameters/status.yaml#/StatusParam
+  responses:
+    '200':
+      description: List of blog posts
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - data
+              - pagination
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: ../components/schemas/blog-post/blog-post.yaml#/BlogPost
+                description: Array of blog posts
+              pagination:
+                $ref: ../components/schemas/common/pagination.yaml#/Pagination
+          example:
+            data:
+              - id: "123e4567-e89b-12d3-a456-426614174000"
+                title: "Getting Started with TypeScript"
+                slug: "getting-started-typescript"
+                content: "# Introduction\n\nTypeScript is a typed superset of JavaScript..."
+                excerpt: "Learn the basics of TypeScript and how it improves JavaScript development."
+                status: "published"
+                tags: ["typescript", "javascript", "tutorial"]
+                readingTime: 8
+                viewCount: 1250
+                createdAt: "2024-01-15T10:00:00Z"
+                updatedAt: "2024-01-16T14:30:00Z"
+                publishedAt: "2024-01-15T10:00:00Z"
+            pagination:
+              page: 1
+              limit: 10
+              total: 45
+              totalPages: 5
+              hasNext: true
+              hasPrev: false
+    '400':
+      $ref: ../components/responses/bad-request.yaml#/BadRequestResponse
+
+post:
+  tags:
+    - Blog Posts
+  summary: Create blog post
+  description: Creates a new blog post. Requires authentication and admin/author role.
+  operationId: createBlogPost
+  security:
+    - jwt-bearer: []
+  requestBody:
+    $ref: ../components/request-bodies/create-blog-post.yaml#/CreateBlogPostRequest
+  responses:
+    '201':
+      description: Blog post created successfully
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/blog-post/blog-post.yaml#/BlogPost
+          example:
+            id: "123e4567-e89b-12d3-a456-426614174001"
+            title: "Getting Started with TypeScript"
+            slug: "getting-started-typescript"
+            content: "# Introduction\n\nTypeScript is a typed superset of JavaScript..."
+            excerpt: "Learn the basics of TypeScript and how it improves JavaScript development."
+            status: "draft"
+            tags: ["typescript", "javascript", "tutorial"]
+            readingTime: 8
+            viewCount: 0
+            createdAt: "2024-01-16T15:00:00Z"
+            updatedAt: "2024-01-16T15:00:00Z"
+            publishedAt: null
+    '400':
+      $ref: ../components/responses/bad-request.yaml#/BadRequestResponse
+    '401':
+      $ref: ../components/responses/unauthorized.yaml#/UnauthorizedResponse
+    '403':
+      $ref: ../components/responses/forbidden.yaml#/ForbiddenResponse
+    '409':
+      $ref: ../components/responses/conflict.yaml#/ConflictResponse

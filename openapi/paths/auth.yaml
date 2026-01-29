@@ -1,0 +1,50 @@
+post:
+  tags:
+    - Authentication
+  summary: User login
+  description: Authenticates a user and returns a JWT access token.
+  operationId: loginUser
+  security: []
+  requestBody:
+    $ref: ../components/request-bodies/user-login.yaml#/UserLoginRequest
+  responses:
+    '200':
+      description: Login successful
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - token
+              - user
+            properties:
+              token:
+                type: string
+                description: JWT access token
+                example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+              user:
+                $ref: ../components/schemas/user/user.yaml#/User
+          example:
+            token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+            user:
+              id: "123e4567-e89b-12d3-a456-426614174002"
+              email: "admin@yourblog.com"
+              username: "blogadmin"
+              firstName: "John"
+              lastName: "Doe"
+              role: "admin"
+              isActive: true
+              createdAt: "2024-01-01T00:00:00Z"
+              updatedAt: "2024-01-15T10:00:00Z"
+              lastLoginAt: "2024-01-16T09:30:00Z"
+    '400':
+      $ref: ../components/responses/bad-request.yaml#/BadRequestResponse
+    '401':
+      description: Invalid credentials
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/common/error-response.yaml#/ErrorResponse
+          example:
+            code: "INVALID_CREDENTIALS"
+            message: "Email or password is incorrect"
